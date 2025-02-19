@@ -5,6 +5,7 @@ public protocol ApiEndpoint {
     var path: String { get }
     var httpMethod: HTTPMethod { get }
     var parameters: [String: Any]? { get }
+    var headers: [String: String]? { get }
 }
 
 public enum HTTPMethod: String {

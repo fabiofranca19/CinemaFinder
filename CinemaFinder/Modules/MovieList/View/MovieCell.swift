@@ -20,30 +20,11 @@ class MovieCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupViews() {
-        contentView.addSubview(posterImageView)
-        contentView.addSubview(titleLabel)
-        
-        NSLayoutConstraint.activate([
-            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            posterImageView.widthAnchor.constraint(equalToConstant: 80)
-        ])
-        
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        ])
     }
     
     func configure(with movie: Movie) {
@@ -53,5 +34,26 @@ class MovieCell: UITableViewCell {
             let imageUrl = URL(string: "https://image.tmdb.org/t/p/w500" + posterPath)
             posterImageView.loadImage(from: imageUrl)
         }
+    }
+}
+
+extension MovieCell: ViewCode {
+    func addSubviews() {
+        contentView.addSubview(posterImageView)
+        contentView.addSubview(titleLabel)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            posterImageView.widthAnchor.constraint(equalToConstant: 80),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
     }
 }

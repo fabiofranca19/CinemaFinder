@@ -17,7 +17,7 @@ final class MovieListService: MovieListServicing {
             return
         }
         
-        let endpoint = MovieListEndpoint.popularMovies
+        let endpoint = MovieListEndpoint.popularMovies()
         
         serviceApi.execute(endpoint) { (result: Result<MovieList, Error>) in
             switch result {

@@ -1,6 +1,6 @@
 import UIKit
 
-protocol MovieListViewDisplaying: AnyObject {
+protocol MovieListDisplaying: AnyObject {
     func showMovies(_ movies: [Movie])
     func showError()
 }
@@ -27,27 +27,34 @@ final class MovieListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupView()
         interactor.fetchMovies()
     }
-    
-    private func setupUI() {
-        view.backgroundColor = .white
+}
+
+extension MovieListViewController: ViewCode {
+    func addSubviews() {
         view.addSubview(tableView)
-        
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    func additionalSetup() {
+        view.backgroundColor = .white
         
         tableView.dataSource = self
         tableView.delegate = self
     }
 }
 
-extension MovieListViewController: MovieListViewDisplaying {
+extension MovieListViewController: MovieListDisplaying {
     func showMovies(_ movies: [Movie]) {
         self.movies = movies
         tableView.reloadData()
@@ -59,7 +66,9 @@ extension MovieListViewController: MovieListViewDisplaying {
             message: "Ocorreu um erro ao carregar os filmes",
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+            self?.interactor.fetchMovies()
+        }))
         present(alert, animated: true)
     }
 }
@@ -71,7 +80,9 @@ extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movie = movies[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.identifier, for: indexPath) as? MovieCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: MovieCell.identifier,
+            for: indexPath) as? MovieCell else {
             return UITableViewCell()
         }
         cell.configure(with: movie)

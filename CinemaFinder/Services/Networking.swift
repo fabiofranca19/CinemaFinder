@@ -9,6 +9,12 @@ final class ServiceApi: Servicing {
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.httpMethod.rawValue
         
+        if let headers = endpoint.headers {
+            for (key, value) in headers {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
+        }
+        
         if let parameters = endpoint.parameters {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -18,7 +24,7 @@ final class ServiceApi: Servicing {
             }
         }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -35,8 +41,7 @@ final class ServiceApi: Servicing {
             } catch {
                 completion(.failure(error))
             }
-        }
-        task.resume()
+        }.resume()
     }
 }
 

@@ -7,7 +7,7 @@ protocol MovieListPresenting: AnyObject {
 
 final class MovieListPresenter: MovieListPresenting {
     private let coordinator: MovieListCoordinating
-    weak var viewController: MovieListViewDisplaying?
+    weak var viewController: MovieListDisplaying?
     
     init(coordinator: MovieListCoordinating) {
         self.coordinator = coordinator
