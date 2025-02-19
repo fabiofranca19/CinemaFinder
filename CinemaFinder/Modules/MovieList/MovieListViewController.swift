@@ -16,6 +16,12 @@ final class MovieListViewController: UIViewController {
         return tableView
     }()
     
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     init(interactor: MovieListInteracting) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
@@ -28,17 +34,21 @@ final class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        interactor.fetchMovies()
+        fetchMovies()
     }
 }
 
 extension MovieListViewController: ViewCode {
     func addSubviews() {
+        view.addSubview(activityIndicator)
         view.addSubview(tableView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -56,20 +66,30 @@ extension MovieListViewController: ViewCode {
 
 extension MovieListViewController: MovieListDisplaying {
     func showMovies(_ movies: [Movie]) {
+        activityIndicator.stopAnimating()
         self.movies = movies
         tableView.reloadData()
     }
+
     
     func showError() {
+        activityIndicator.stopAnimating()
         let alert = UIAlertController(
             title: "Erro",
             message: "Ocorreu um erro ao carregar os filmes",
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-            self?.interactor.fetchMovies()
+            self?.fetchMovies()
         }))
         present(alert, animated: true)
+    }
+}
+
+private extension MovieListViewController {
+    func fetchMovies() {
+        activityIndicator.startAnimating()
+        interactor.fetchMovies()
     }
 }
 

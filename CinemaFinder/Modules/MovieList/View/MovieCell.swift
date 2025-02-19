@@ -6,6 +6,7 @@ class MovieCell: UITableViewCell {
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -27,6 +28,12 @@ class MovieCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        posterImageView.image = nil
+        titleLabel.text = nil
+    }
+    
     func configure(with movie: Movie) {
         titleLabel.text = movie.title
         
@@ -45,10 +52,12 @@ extension MovieCell: ViewCode {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 140),
+            
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             posterImageView.widthAnchor.constraint(equalToConstant: 80),
+            posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor, multiplier: 1.5),
             
             titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),

@@ -16,7 +16,6 @@
 		E6DF32DB2D6636AD00082E9D /* MovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DF32DA2D6636A800082E9D /* MovieDetailService.swift */; };
 		E6E17C4E2D6243E4001E3C5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E17C4D2D6243E4001E3C5E /* AppDelegate.swift */; };
 		E6E17C502D6243E4001E3C5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E17C4F2D6243E4001E3C5E /* SceneDelegate.swift */; };
-		E6E17C522D6243E4001E3C5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E17C512D6243E4001E3C5E /* ViewController.swift */; };
 		E6E17C572D6243E5001E3C5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6E17C562D6243E5001E3C5E /* Assets.xcassets */; };
 		E6E17C5A2D6243E5001E3C5E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E6E17C592D6243E5001E3C5E /* Base */; };
 		E6E17C652D6243E5001E3C5E /* CinemaFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E17C642D6243E5001E3C5E /* CinemaFinderTests.swift */; };
@@ -67,7 +66,6 @@
 		E6E17C4A2D6243E4001E3C5E /* CinemaFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinemaFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6E17C4D2D6243E4001E3C5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6E17C4F2D6243E4001E3C5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E6E17C512D6243E4001E3C5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E6E17C562D6243E5001E3C5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6E17C592D6243E5001E3C5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6E17C5B2D6243E5001E3C5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				E6E17C812D62F766001E3C5E /* Resources */,
 				E6E17C4D2D6243E4001E3C5E /* AppDelegate.swift */,
 				E6E17C4F2D6243E4001E3C5E /* SceneDelegate.swift */,
-				E6E17C512D6243E4001E3C5E /* ViewController.swift */,
 				E6E17C832D62F891001E3C5E /* AppCoordinator.swift */,
 			);
 			path = CinemaFinder;
@@ -350,7 +347,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					E6E17C492D6243E4001E3C5E = {
 						CreatedOnToolsVersion = 15.4;
@@ -421,7 +418,6 @@
 				E6E17C8C2D62FE55001E3C5E /* DependencyContainer.swift in Sources */,
 				E6E17C982D6322D9001E3C5E /* MovieListService.swift in Sources */,
 				E6E17C962D6320B6001E3C5E /* Movie.swift in Sources */,
-				E6E17C522D6243E4001E3C5E /* ViewController.swift in Sources */,
 				E6E17C8E2D630D6B001E3C5E /* Networking.swift in Sources */,
 				E6DF32D32D66368000082E9D /* MovieDetailCoordinator.swift in Sources */,
 				E6E17C912D631214001E3C5E /* Servicing.swift in Sources */,
@@ -664,7 +660,6 @@
 		E6E17C782D6243E5001E3C5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -684,7 +679,6 @@
 		E6E17C792D6243E5001E3C5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -704,7 +698,6 @@
 		E6E17C7B2D6243E5001E3C5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y72HNGSH66;
@@ -722,7 +715,6 @@
 		E6E17C7C2D6243E5001E3C5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y72HNGSH66;
